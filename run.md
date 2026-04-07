@@ -277,7 +277,47 @@ It can also be triggered manually via `workflow_dispatch`.
 | `MONGO_URI` | Your MongoDB Atlas connection string |
 | `MONGO_DB` | `mandera_analytics` |
 
-Set these in your repo: **Settings** → **Secrets and variables** → **Actions** → **New repository secret**.
+#### How to Create the Secrets
+
+**Option A: Via GitHub UI**
+
+1. Go to your repo on GitHub: https://github.com/tripleaceme/mandera-batch-pipeline
+2. Click **Settings** (top tab bar)
+3. In the left sidebar, click **Secrets and variables** → **Actions**
+4. Click **New repository secret**
+5. For the first secret:
+   - **Name:** `MONGO_URI`
+   - **Secret:** `mongodb+srv://<username>:<password>@<cluster>.mongodb.net/mandera_analytics?retryWrites=true&w=majority`
+   - Click **Add secret**
+6. Click **New repository secret** again
+7. For the second secret:
+   - **Name:** `MONGO_DB`
+   - **Secret:** `mandera_analytics`
+   - Click **Add secret**
+
+**Option B: Via GitHub CLI**
+
+```bash
+# Set MONGO_URI (paste your full Atlas connection string when prompted)
+gh secret set MONGO_URI
+
+# Set MONGO_DB
+gh secret set MONGO_DB --body "mandera_analytics"
+```
+
+#### How to Get Your MongoDB Atlas Connection String
+
+1. Log in to [MongoDB Atlas](https://cloud.mongodb.com)
+2. Click **Connect** on your cluster
+3. Choose **Drivers**
+4. Copy the connection string — it looks like:
+   ```
+   mongodb+srv://<username>:<password>@cluster0.xxxxx.mongodb.net/?retryWrites=true&w=majority
+   ```
+5. Replace `<username>` and `<password>` with your Atlas database user credentials
+6. Add the database name before the `?`: `.../mandera_analytics?retryWrites=true&w=majority`
+
+> **Tip:** After adding the secrets, you can trigger the workflow manually to test it: go to **Actions** → **Generate Synthetic Data → MongoDB Atlas** → **Run workflow**.
 
 ---
 
