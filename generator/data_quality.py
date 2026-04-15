@@ -34,3 +34,30 @@ def introduce_order_issues(order: dict, config: dict) -> dict:
         order["payment_status"] = "UNKNOWN_STATUS"
 
     return order
+
+
+
+def introduce_product_issues(product: dict, config: dict, all_categories: list) -> dict:
+
+    # Missing name
+    if maybe(config["missing_name_rate"]):
+        product["product_name"] = None
+
+    # Invalid price (extreme values)
+    if maybe(config["invalid_price_rate"]):
+        product["price"] = round(random.uniform(100000, 999999), 2)
+
+    # Zero price bug
+    if maybe(config["zero_price_rate"]):
+        product["price"] = 0
+
+    # Category mismatch
+    if maybe(config["category_mismatch_rate"]):
+        product["category"] = random.choice(all_categories)
+
+    # Schema drift
+    if maybe(config["schema_drift_rate"]):
+        product["brand"] = random.choice(["Nike", "Apple", "Samsung", "Sony", "Generic"])
+        product["is_active"] = random.choice([True, False])
+
+    return product
