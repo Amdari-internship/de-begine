@@ -39,7 +39,7 @@ def introduce_order_issues(order: dict, config: dict) -> dict:
         amount = safe_int(order["amount"])
 
         if amount is None:
-            return order["amount"]
+            return order
 
         order["amount"] = -abs(amount)
 
