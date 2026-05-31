@@ -45,8 +45,8 @@ GitHub Actions (cron)                 Airflow DAG (Docker)
 
 ```bash
 # 1. Clone and configure
-git clone https://github.com/beginefusion/begine-fusion-batch-pipeline.git
-cd begine-fusion-batch-pipeline
+git clone https://github.com/Amdari-internship/de-begine.git
+cd de-begine
 cp .env.example .env
 # Edit .env — set MONGO_URI and generate AIRFLOW__CORE__FERNET_KEY
 
@@ -88,9 +88,3 @@ See [run.md](run.md) for the complete setup guide, step-by-step pipeline executi
 ├── run.md               # Detailed setup and execution guide
 └── .env.example         # Environment variable template
 ```
-
-## Documentation
-
-- [run.md](run.md) — Complete setup and execution guide
-- [docs/architecture.md](docs/architecture.md) — System design and data flow
-- [docs/data_dictionary.md](docs/data_dictionary.md) — Schema definitions for all tables
